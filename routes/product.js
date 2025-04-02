@@ -1,6 +1,6 @@
 const express = require("express");
 
-const productRouter = express.Router();
+const productRoute = express.Router();
 
 let products = [
   { name: "phone", price: 4000, amount: 40 },
@@ -9,19 +9,19 @@ let products = [
   { name: "televison", price: 50000, amount: 400 },
 ];
 
-productRouter.use("/", (req, res, next) => {
+productRoute.use("/", (req, res, next) => {
   console.log(`Products middleware !`);
   next();
 });
 
-productRouter.get("/", (req, res) => {
+productRoute.get("/", (req, res) => {
   res.json({
     message: "success",
     data: products,
   });
 });
 
-productRouter.post("/", (req, res) => {
+productRoute.post("/", (req, res) => {
   let newProducts = req.body;
   products.push(newProducts);
   res.json({
@@ -30,7 +30,7 @@ productRouter.post("/", (req, res) => {
   });
 });
 
-productRouter.patch("/:name/:price", (req, res) => {
+productRoute.patch("/:name/:price", (req, res) => {
   let foundProduct = products.find(
     (product) => product.name === req.params.name
   );
@@ -42,7 +42,7 @@ productRouter.patch("/:name/:price", (req, res) => {
   }
 });
 
-productRouter.delete("/:name", (req, res) => {
+productRoute.delete("/:name", (req, res) => {
   if (products.find((p) => p.name === req.params.name)) {
     products = products.filter((p) => p.name != req.params.name);
     res.json({
@@ -54,4 +54,4 @@ productRouter.delete("/:name", (req, res) => {
   }
 });
 
-module.exports = productRouter;
+module.exports = productRoute;
