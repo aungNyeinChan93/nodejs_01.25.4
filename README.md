@@ -9,6 +9,7 @@ This project is a tutorial for learning and building applications using the Expr
 - Middleware usage
 - Error handling
 - Static file serving
+- RESTful API design
 
 ## Prerequisites
 
@@ -50,37 +51,51 @@ express_tuto_1.25.4/
 └── README.md       # Project documentation
 ```
 
-## License
+## Routes
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+### Home Routes
 
-## Acknowledgments
+- **GET /**: Serves the `index.html` file.
+- **POST /**: Accepts form data and responds with a message containing the submitted name and age.
 
-- [Express.js Documentation](https://expressjs.com/)
-- Tutorials and guides from the Node.js community
-- Open-source contributors
+### Test Routes
 
-### Routes
+- **GET /api/test**: Returns a simple test message.
+- **GET /api/test/:name/:age**: Returns a JSON response with the name and age provided in the URL.
 
-`Home
-GET /: Serves the index.html file.
-POST /: Accepts form data and responds with a message containing the submitted name and age.
-Test Routes
-GET /api/test: Returns a simple test message.
-GET /api/test/:name/:age: Returns a JSON response with the name and age provided in the URL.
-Product Routes
-GET /api/products: Returns a list of all products.
-POST /api/products: Adds a new product to the list.
-PATCH /api/products/:name/:price: Updates the price of a product by name.
-DELETE /api/products/:name: Deletes a product by name.
-User Routes
-GET /api/users: Returns a list of all users.
-GET /api/users/show/:id: Returns details of a user by ID.
-POST /api/users/create: Adds a new user to the list.
-PUT /api/users/:id: Updates a user's details by ID.
-DELETE /api/users/:id: Deletes a user by ID.
-Dependencies
-Express.js - Web framework for Node.js
-Nodemon - Development tool for auto-restarting the server
-Development
-To modify the project, edit the files in the routes folder for route logic or the view folder for HTML content. The main application logic is in app.js.`
+### Product Routes
+
+- **GET /api/products**: Returns a list of all products.
+- **POST /api/products**: Adds a new product to the list.
+- **PATCH /api/products/:name/:price**: Updates the price of a product by name.
+- **DELETE /api/products/:name**: Deletes a product by name.
+
+### User Routes
+
+- **GET /api/users**: Returns a list of all users.
+- **GET /api/users/show/:id**: Returns details of a user by ID.
+- **POST /api/users/create**: Adds a new user to the list.
+- **PUT /api/users/:id**: Updates a user's details by ID.
+- **DELETE /api/users/:id**: Deletes a user by ID.
+
+### Category Routes
+
+- **GET /api/categories**: Returns a list of all categories.
+- **GET /api/categories/:id**: Returns details of a category by ID.
+- **POST /api/categories**: Adds a new category to the list.
+- **PATCH /api/categories/:id/:name**: Updates the name of a category by ID.
+- **DELETE /api/categories/:id**: Deletes a category by ID.
+
+## Dependencies
+
+- **Express.js**: Web framework for Node.js
+- **Nodemon**: Development tool for auto-restarting the server
+- **Body-parser**: Middleware for parsing request bodies
+
+## Development
+
+To modify the project:
+
+- Edit the files in the `routes` folder for route logic.
+- Edit the files in the `views` folder for HTML content.
+- The main application logic is in `app.js`.

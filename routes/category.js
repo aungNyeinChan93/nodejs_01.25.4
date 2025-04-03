@@ -1,28 +1,28 @@
 const express = require("express");
 
-const route = express.Router();
+const router = express.Router();
 
 const categoeyController = require("../controllers/category");
 
 // middleware
-route.use("/", (req, res, next) => {
-  console.log(`${route.name}`);
+router.use("/", (req, res, next) => {
+  console.log(`${router.name}`);
   next();
 });
 
 // all categories
-route.get("/", categoeyController.all);
+router.get("/", categoeyController.all);
 
 // get category
-route.get("/:id", categoeyController.detail);
+router.get("/:id", categoeyController.detail);
 
 // create category
-route.post("/", categoeyController.create);
+router.post("/", categoeyController.create);
 
 // update category
-route.patch("/:id/:name", categoeyController.modify);
+router.patch("/:id/:name", categoeyController.modify);
 
 // destroy category
-route.delete("/:id", categoeyController.destroy);
+router.delete("/:id", categoeyController.destroy);
 
-module.exports = route;
+module.exports = router;

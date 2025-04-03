@@ -1,19 +1,19 @@
 const express = require("express");
 
-const productRoute = express.Router();
+const productRouter = express.Router();
 const ProductController = require("../controllers/product");
 
-productRoute.use("/", (req, res, next) => {
+productRouter.use("/", (req, res, next) => {
   console.log(`Products middleware !`);
   next();
 });
 
-productRoute.get("/", ProductController.all);
+productRouter.get("/", ProductController.all);
 
-productRoute.post("/", ProductController.create);
+productRouter.post("/", ProductController.create);
 
-productRoute.patch("/:name/:price", ProductController.modify);
+productRouter.patch("/:name/:price", ProductController.modify);
 
-productRoute.delete("/:name", ProductController.destroy);
+productRouter.delete("/:name", ProductController.destroy);
 
-module.exports = productRoute;
+module.exports = productRouter;
