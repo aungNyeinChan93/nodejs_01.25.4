@@ -4,10 +4,22 @@ const app = express();
 const path = require("node:path");
 app.use(express.json());
 
+// db-connect
+const { connectDB, getConn } = require("./utils/db");
+connectDB((err) => {
+  if (!err) {
+    app.listen(port, () => console.log(`Server is running in port ${port}`));
+    // console.log(getConn());
+  } else {
+    console.log("Connection Error ****", err);
+  }
+});
+
 // routes
 const testRoute = require("./routes/test");
 const productRoute = require("./routes/product");
 const userRoute = require("./routes/user");
+const categoryRoute = require("./routes/category");
 
 // home
 app.get("/", (req, res) => {
@@ -31,4 +43,5 @@ app.use("/api/products", productRoute);
 //userRoute
 app.use("/api/users", userRoute);
 
-app.listen(port, () => console.log(`Server is running in port ${port}`));
+// categories
+app.use("/api/categories", categoryRoute);

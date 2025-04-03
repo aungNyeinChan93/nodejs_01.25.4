@@ -1,6 +1,6 @@
 const express = require("express");
 
-const userRoute = express.Router();
+const userRouter = express.Router();
 
 let users = [
   { id: 1, name: "mgmg", role: "staff", status: false },
@@ -10,7 +10,7 @@ let users = [
   { id: 5, name: "tun tun", role: "designer", status: true },
 ];
 
-userRoute.get("/", (req, res) => {
+userRouter.get("/", (req, res) => {
   res.json({
     message: "All Users",
     result: users,
@@ -18,7 +18,7 @@ userRoute.get("/", (req, res) => {
   });
 });
 
-userRoute.get("/show/:id", (req, res) => {
+userRouter.get("/show/:id", (req, res) => {
   let user = users.find((user) => user.id === Number(req.params.id));
   user
     ? res.json({
@@ -31,7 +31,7 @@ userRoute.get("/show/:id", (req, res) => {
       });
 });
 
-userRoute.post("/create", (req, res) => {
+userRouter.post("/create", (req, res) => {
   let newUser = req.body;
   // users.push(newUser);
   users = [...users, newUser];
@@ -42,7 +42,7 @@ userRoute.post("/create", (req, res) => {
   });
 });
 
-userRoute.put("/:id", (req, res) => {
+userRouter.put("/:id", (req, res) => {
   let foundUser = users.find((user) => user.id === Number(req.params.id));
   if (foundUser) {
     Object.assign(foundUser, req.body);
@@ -58,7 +58,7 @@ userRoute.put("/:id", (req, res) => {
   }
 });
 
-userRoute.delete("/:id", (req, res) => {
+userRouter.delete("/:id", (req, res) => {
   let user = users.find((u) => u.id === parseInt(req.params.id));
 
   if (user) {
@@ -74,4 +74,4 @@ userRoute.delete("/:id", (req, res) => {
     });
   }
 });
-module.exports = userRoute;
+module.exports = userRouter;
