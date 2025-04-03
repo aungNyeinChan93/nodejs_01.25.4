@@ -4,12 +4,18 @@ const app = express();
 const path = require("node:path");
 app.use(express.json());
 
-// db-connect
+//  duel-db-connecting
 const { connectDB, getConn } = require("./utils/db");
+const { connectTestDB, getTestConnection } = require("./utils/testdb");
 connectDB((err) => {
   if (!err) {
-    app.listen(port, () => console.log(`Server is running in port ${port}`));
-    // console.log(getConn());
+    connectTestDB((err) => {
+      !err
+        ? app.listen(port, () =>
+            console.log(`Server is running in port ${port}`)
+          )
+        : console.log(`Test DB connection Error!`);
+    });
   } else {
     console.log("Connection Error ****", err);
   }
